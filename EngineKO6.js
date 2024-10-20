@@ -296,11 +296,11 @@ function searchSorting(fen ,isWhite){
         innerMoves = innerMoves.sort((a , b) => scoreCounterInner.get(a) - scoreCounter.get(b))
         // innerMoves = innerMoves.map(move => { return {from: move.from() , to:move.to()}})
         scoreCounter.set(move , BestScore)
-        fenMove.set(innerFen , innerMoves)
+        fenMove.set(innerFen , innerMoves.slice(0 , 100))
     }
     moves = moves.sort((a  , b ) => scoreCounter.get(b) - scoreCounter.get(a))
     // moves = moves.map(move => { return {from: move.from() , to:move.to()}})
-    fenMove.set(fen , moves.slice(0 , 6))
+    fenMove.set(fen , moves.slice(0 , 5))
 
     return fenMove
 
@@ -678,7 +678,7 @@ export function engine(fen , isWhite = false){
             numberOfPieces++;
         }
     }
-    const maxdepth = 5
+    const maxdepth = 4
     const moveOpening = BasicSorting(chess)
     const opening = getOpeningMove(fen);
     if(opening != 0){
@@ -755,7 +755,7 @@ if (args.length >= 1) {
 
 // console.time("time")
 
-// engine("r1bqkbnr/pppppppp/2n5/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 1 2" , false) // 39 move
+// console.log(engine("r1bqkbnr/pppppppp/2n5/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 1 2" , false)) // 39 move
 
 
 // console.timeEnd("time")

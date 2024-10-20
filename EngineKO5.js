@@ -253,15 +253,6 @@ const openingBook = {
 const book = new Map(Object.entries(openingBook))
 
 
-
-
-
-
-
-
-
-
-
 function getOpeningMove(fen){
     if(book.has(fen)){
         const moves = book.get(fen);
@@ -667,10 +658,10 @@ export function engine(fen , isWhite = true){
         }
     }
     const maxdepth = 3
-    const moves = BasicSorting(chess)
+    let moves = BasicSorting(chess)
     const opening = getOpeningMove(fen);
     if(opening != 0){
-        for(const move of moveOpening){
+        for(const move of moveOpening && false){
             if(move.from() == opening[0] && move.to() == opening[1]){
                 // console.log("Theory")
                 // return [move.from() , move.to() , false]
@@ -678,7 +669,7 @@ export function engine(fen , isWhite = true){
             }
         }
     }
-    // const moves = searchSorting(fen , isWhite);
+    // moves = searchSorting(fen , isWhite);
 
 
 
@@ -733,6 +724,12 @@ if (args.length >= 1) {
     console.log("Not enough arguments provided.");
 }
 
+// console.time("time")
+
+// engine("r1bqkbnr/pppppppp/2n5/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 1 2" , false) // The hardest
+
+
+// console.timeEnd("time")
 // console.time("time")
 
 // engine("r2q1rk1/ppp2ppp/2n2n2/2bpp3/2BPP3/2N2N2/PPP2PPP/R1BQ1RK1 w - - 0 1" , false) // 39 move

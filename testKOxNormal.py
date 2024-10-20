@@ -3,11 +3,11 @@ import chess
 import chess.engine
 import time
 
-stockFishPath = r"C:\Users\said5\Desktop\stockfish-windows-x86-64-sse41-popcnt\stockfish\stockfish-windows-x86-64-sse41-popcnt.exe"
+# stockFishPath = r"C:\Users\said5\Desktop\stockfish-windows-x86-64-sse41-popcnt\stockfish\stockfish-windows-x86-64-sse41-popcnt.exe"
 games = []
 board = chess.Board()
-engine = chess.engine.SimpleEngine.popen_uci(stockFishPath)
-engine.configure({"Skill Level": 2})
+# engine = chess.engine.SimpleEngine.popen_uci(stockFishPath)
+# engine.configure({"Skill Level": 2})
 
 # Initialize total time counters
 white_total_time = 0
@@ -21,7 +21,7 @@ while not board.is_game_over():
         white_move_start = time.time()  # Start timing for white move
 
         current_fen = board.fen()
-        move_san = subprocess.run(["node", "src/comps/EngineKO6.js", current_fen], capture_output=True, text=True).stdout.strip()
+        move_san = subprocess.run(["node", "EngineKO6.js", current_fen], capture_output=True, text=True).stdout.strip()
         
         try:
             move = board.parse_uci(move_san)
@@ -41,7 +41,7 @@ while not board.is_game_over():
         black_move_start = time.time()  # Start timing for black move
         
         current_fen = board.fen()
-        move = subprocess.run(["node", "src/comps/EngineKO5.js", current_fen], capture_output=True, text=True).stdout.strip()
+        move = subprocess.run(["node", "EngineKO5.js", current_fen], capture_output=True, text=True).stdout.strip()
         
         try:
             move = board.parse_uci(move)
